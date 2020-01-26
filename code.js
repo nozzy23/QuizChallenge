@@ -1,37 +1,80 @@
 var questions = [
     {
       title: "The Efile Tower is Located in which country?",
-      choices: ["France", "Germany", "Spain", "Italy"],
-      answer: "France"
+      choices: [
+          {text: "France", correct: true},
+          {text: "Germany", correct: false},
+          {text: "Spain",correct: false},
+          {text: "Italy", correct:false}
+        ]
     },
     {
       title: "Which Countries flag has red and yellow in it?",
-      choices: ["Italy", "Netherlands", "Spain", "England"],
-      answer: "Spain"
+      choices: [
+          {text: "Italy", correct: false},
+          {text: "Netherlands", correct: false},
+          {text: "Spain", correct: true}, 
+          {text: "England", correct:false}
+        ]
     },
     {
         title: "In which Country can you find the Colosseum?",
-        choices: ["Ireland", "Netherlands", "Italy", "Greece"],
-        answer: "Italy"
+        choices: [
+            {text: "Ireland", correct:false},
+            {text: "Netherlands", correct:false},
+            {text: "Italy", correct:true},
+            {text: "Greece", correct:false}
+        ]
       },
       {
         title: "What Is the Captial of Germany?",
-        choices: ["Berlin", "Munich", "Hamburg", "Frankfurt"],
-        answer: "Berlin"
+        choices: [
+            {text: "Berlin", correct:true},
+            {text: "Munich", correct:false},
+            {text: "Hamburg", correct:false},
+            {text: "Frankfurt", correct:false}
+        ]
+
       },
       {
         title: "Which Countries flag has blue and red in it?",
-        choices: ["Italy", "Greece", "Spain", "England"],
-        answer: "England"
+        choices: [
+            {text: "Italy", correct:false},
+            {text: "Greece", correct:false},
+            {text: "Spain", correct:false},
+            {text: "England", correct:true}
+        ]
       }
     
   ];
-  
 
-//targets start button 
-var startButton = $("#start-btn")
-startButton.click(function(){
-    startButton.attr("class", 'hide')
-console.log("yeah?")
+  var shuffeledQuestion, currentQuestionIndex
+
+  var StartButton = document.getElementById('start-btn')
+  var questionContainerElement = document.getElementById('question-Container')
+  var questionElement = document.getElementById('question')
+  var answerButtons = document.getElementById('answer-buttons')
+
+  StartButton.addEventListener("click", startGame)
+
+function startGame(){
+ console.log("start")
+ StartButton.classList.add('hide')
+ shuffeledQuestion = questions.sort(() => Math.random() - .5)
+ currentQuestionIndex = 0
+ questionContainerElement.classList.remove('hide')
+ setNextQuestion()
+}
+
+function setNextQuestion(){
+    showQuestion(shuffeledQuestion[currentQuestionIndex])
+}
+
+function showQuestion(questions) {
+    questionElement.innerText = questions.title
     
-})
+}
+
+function selectAnswer(){
+
+}
