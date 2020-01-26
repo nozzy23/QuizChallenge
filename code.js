@@ -26,3 +26,9 @@ var questions = [
       }
     
   ];
+  
+
+//targets start button 
+$("#start-btn").click(function(){
+    alert("button works")
+})
