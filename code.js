@@ -72,7 +72,16 @@ function setNextQuestion(){
 
 function showQuestion(questions) {
     questionElement.innerText = questions.title
-    
+    questions.choices.forEach(choices => {
+        var button = document.createElement('button')
+        button.innerText = choices.text
+        button.classList.add('btn')
+        if (choices.correct) {
+            button.dataset.correct = choices.correct
+        }
+        button.addEventListener('click', selectAnswer)
+        answerButtons.appendChild(button)
+    })
 }
 
 function selectAnswer(){
