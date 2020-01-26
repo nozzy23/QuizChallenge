@@ -29,6 +29,9 @@ var questions = [
   
 
 //targets start button 
-$("#start-btn").click(function(){
-    alert("button works")
+var startButton = $("#start-btn")
+startButton.click(function(){
+    startButton.attr("class", 'hide')
+console.log("yeah?")
+    
 })
