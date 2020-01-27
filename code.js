@@ -57,6 +57,10 @@ var questions = [
   var answerButtonsElement = document.getElementById('answer-buttons')
 
   StartButton.addEventListener("click", startGame)
+  nextButton.addEventListener("click", () => {
+      currentQuestionIndex++
+      setNextQuestion()
+  })
 
 function startGame(){
  console.log("start")
@@ -87,13 +91,14 @@ function showQuestion(questions) {
         answerButtonsElement.appendChild(button)
     })
 }
-
+// cant make buttons reset
 function resetState() {
+    clearStatusClass(document.body)
     nextButton.classList.add('hide')
-    while (answerButtonsElement.firstchild) {
-        answerButtonsElement.removeChild(answerButtonsElement.firstchild)
+    while (answerButtonsElement.firstChild) {
+      answerButtonsElement.removeChild(answerButtonsElement.firstChild)
     }
-}
+  }
 
 function selectAnswer(e){
     var selectedButton = e.target
@@ -102,7 +107,12 @@ function selectAnswer(e){
     Array.from(answerButtonsElement.children). forEach(button=> {
         setStatusClass(button, button.dataset.correct)
     })
-    nextButton.classList.remove('hide')
+    if (shuffledQuestion.length > currentQuestionIndex +1 ) {
+        nextButton.classList.remove('hide')
+    } else {
+        startGame.innerText = "Restart"
+        StartButton.classList.remove("hide")
+    }
 }
 
 function setStatusClass(element, correct) {
