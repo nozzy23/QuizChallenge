@@ -91,7 +91,7 @@ function showQuestion(questions) {
         answerButtonsElement.appendChild(button)
     })
 }
-// cant make buttons reset
+
 function resetState() {
     clearStatusClass(document.body)
     nextButton.classList.add('hide')
@@ -100,20 +100,22 @@ function resetState() {
     }
   }
 
-function selectAnswer(e){
-    var selectedButton = e.target
-    var correct = selectedButton.dataset.correct
+  function selectAnswer(e) {
+    const selectedButton = e.target
+    const correct = selectedButton.dataset.correct
     setStatusClass(document.body, correct)
-    Array.from(answerButtonsElement.children). forEach(button=> {
-        setStatusClass(button, button.dataset.correct)
+    Array.from(answerButtonsElement.children).forEach(button => {
+      setStatusClass(button, button.dataset.correct)
     })
-    if (shuffledQuestion.length > currentQuestionIndex +1 ) {
-        nextButton.classList.remove('hide')
+    if (shuffledQuestion.length > currentQuestionIndex + 1) {
+      nextButton.classList.remove('hide')
     } else {
-        startGame.innerText = "Restart"
-        StartButton.classList.remove("hide")
+      StartButton.innerText = 'Restart'
+      StartButton.classList.remove('hide')
     }
-}
+
+  }
+  
 
 function setStatusClass(element, correct) {
     clearStatusClass(element)
@@ -136,8 +138,22 @@ var interval = setInterval(function(){
   count--;
   if (count === 0){
     clearInterval(interval);
-    document.getElementById('count').innerHTML='Done';
+    document.getElementById('count').innerHTML='End';
     // or...
     alert("You're out of time!");
   }
 }, 1000);
+
+
+$("#counter").text("Your Current score is:")
+let counter = {
+  sec: 0,
+  count: 0,
+  inc() {
+    this.count;
+    $(".counter").text(this.count);
+  },
+  score: 0
+}
+
+$("#highScore").text("User High Score: " + count)
